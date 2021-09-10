@@ -43,8 +43,7 @@ def get_data():  # put application's code here
     page = request.args.get('page', 1, type=int)
     schools = School.query.order_by(School.id).paginate(
         page, 10, False)
-    result = {'msg': 'success', 'state': 200}
-    result['data'] = []
+    result = {'msg': 'success', 'state': 200, 'pageCount': 23, 'data': []}
     for school in schools.items:
         result['data'].append({
             'school': school.school,
