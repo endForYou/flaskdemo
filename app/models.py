@@ -26,18 +26,3 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
-
-
-class School(db.Model):
-    #s=db.Query.all()
-    id = db.Column(db.Integer, primary_key=True)
-    school = db.Column(db.String(255))
-    school_img = db.Column(db.String(255))
-    school_jianjie = db.Column(db.Text)
-    phone = db.Column(db.String(255))
-    address = db.Column(db.String(500))
-    list_jieshao = db.Column(db.Text)
-    __tablename__ = "shenhe_school"
-
-    def __repr__(self):
-        return '<School {}>'.format(self.school)
