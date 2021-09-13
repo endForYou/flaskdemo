@@ -124,9 +124,13 @@ def get_training_course_data():
     res = requests.request("GET", url, headers=headers, params=data)
     result = {'msg': res.json()['msg'], 'state': res.json()['state'], 'data': {}}
     result['data']['data'] = []
-    result['data']['pageCount'] = 24
+    result['data']['pageCount'] = 20
 
     for data in res.json()['data']['data']:
+        phone = data['phone']
+        qq = data['qq']
+        if not phone or not qq:
+            continue
         if data['list_img']:
             list_img = "https://www.51talk.pro" + data['list_img'] if data['list_img'].find("sokecheng") != -1 else \
                 data[
