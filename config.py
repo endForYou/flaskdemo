@@ -11,7 +11,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'youwillnevergess'
-    DEBUG = True
     DIALECT = 'mysql'
     DRIVER = 'pymysql'
     USERNAME = 'root'
@@ -22,3 +21,9 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = "{}+{}://{}:{}@{}:{}/{}?charset=utf8".format(DIALECT, DRIVER, USERNAME, PASSWORD, HOST,PORT, DATABASE)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
+    MAIL_SERVER = os.environ.get('MAIL_SERVER') or "smtp.sina.com"
+    MAIL_PORT = int(os.environ.get('MAIL_PORT') or 465)
+    MAIL_USE_TLS = 1
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or "jiewei1989830@sina.com"
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or "b0b666f1826ac321"
+    ADMINS = ['jiewei@junyanginfo.com','258048759@qq.com']
