@@ -42,40 +42,26 @@ def get_data():  # put application's code here
 #     # return result
 
 @app.route('/course')
-def get_computer_data():
-    url = "https://www.51talk.pro/t/60efd2f42b2ad/ajax/sokecheng/getOtherInfos?query=%E7%94%B5%E8%84%91IT&num=8&id=22&order=rand"
-
-    data = {
-
-    }
-    if request.args.get("query"):
-        data['query'] = request.args.get("query")
-    data['num'] = request.args.get("num")
-    data['id'] = request.args.get("id")
-    res = requests.request("GET", url, headers=headers, params=data)
-    result = {'msg': res.json()['msg'], 'state': res.json()['state'], 'data': []}
-    for data in res.json()['data']:
-        if data['list_img']:
-            list_img = "https://www.51talk.pro" + data['list_img'] if data['list_img'].find("sokecheng") != -1 else \
-                data[
-                    'list_img']
-            data['list_img'] = list_img
-        if data['school_img']:
-            school_img = "https://www.51talk.pro" + data['school_img'] if data['school_img'].find(
-                "sokecheng") != -1 else \
-                data['school_img']
-
-            data['school_img'] = school_img
-
-        school_jianjie = data['school_jianjie']
-        if school_jianjie:
-            data['school_jianjie'] = school_jianjie.replace("/sokecheng/image",
-                                                            "https://www.51talk.pro/sokecheng/image")
-
-        content = data['content']
-        if content:
-            data['content'] = content.replace("/sokecheng/image", "https://www.51talk.pro/sokecheng/image")
-        result['data'].append(data)
+def get_course():
+    page = request.args.get('page', 1, type=int)
+    page_number = request.args.get('num', 10, type=int)
+    course_type = request.args.get('course_type', "餐饮", type=str)
+    courses = Course.query.filter_by(course_type=course_type).order_by(Course.id).paginate(
+        page, page_number, False)
+    result = {'msg': 'success', 'state': 200, 'data': []}
+    for course in courses.items:
+        result['data'].append({
+            'name': course.name,
+            'school': course.school,
+            'maxprice': course.maxprice,
+            'minprice': course.minprice,
+            'content': json.loads(course.content),
+            'abstract': json.loads(course.abstract),
+            'address': course.detailAddress,
+            'show_tag': json.loads(course.show_tag),
+            'list_img': course.list_img,
+            'phone': course.phone
+        })
     return result
 
 

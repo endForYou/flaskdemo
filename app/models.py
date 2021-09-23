@@ -52,6 +52,7 @@ class Course(db.Model):
     show_tag = db.Column(db.Text)
     list_img = db.Column(db.String(255))
     phone = db.Column(db.String(255))
+    course_type=db.Column(db.String(255))
     __tablename__ = "shenhe_course"
 
     def __repr__(self):
