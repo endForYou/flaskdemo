@@ -29,7 +29,7 @@ class Post(db.Model):
 
 
 class School(db.Model):
-    #s=db.Query.all()
+    # s=db.Query.all()
     id = db.Column(db.Integer, primary_key=True)
     school = db.Column(db.String(255))
     school_img = db.Column(db.String(255))
@@ -39,5 +39,20 @@ class School(db.Model):
     list_jieshao = db.Column(db.Text)
     __tablename__ = "shenhe_school"
 
+
+class Course(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    school = db.Column(db.String(255))
+    maxprice = db.Column(db.String(255))
+    minprice = db.Column(db.String(255))
+    content = db.Column(db.Text)
+    abstract = db.Column(db.Text)
+    detailAddress = db.Column(db.String(255))
+    show_tag = db.Column(db.Text)
+    list_img = db.Column(db.String(255))
+    phone = db.Column(db.String(255))
+    __tablename__ = "shenhe_course"
+
     def __repr__(self):
-        return '<School {}>'.format(self.school)
+        return '<Course {}>'.format(self.name)
