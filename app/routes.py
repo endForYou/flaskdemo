@@ -13,7 +13,7 @@ log_file_list = ['platform', 'evaluation', 'oms', 'user', 'security', 'subject',
                  'zuul', 'volunteer', 'login', 'enterprise', 'content']
 
 
-@app.route('/backend/log/<string:name>')
+@app.route('/backend/log/<string:name>',methods=['GET'])
 def get_data(name):  # put application's code here
     if name not in log_file_list:
         return None
