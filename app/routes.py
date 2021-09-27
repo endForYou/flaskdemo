@@ -17,7 +17,7 @@ log_file_list = ['platform', 'evaluation', 'oms', 'user', 'security', 'subject',
 def get_data(name):  # put application's code here
     if name not in log_file_list:
         return None
-    return subprocess.run("docker logs -f --tail 100 %s" % name,shell=True)
+    return subprocess.run("docker logs --since 10s %s" % name,shell=True)
 
 
 @app.route("/")
