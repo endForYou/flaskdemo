@@ -16,7 +16,7 @@ class Config(object):
     DRIVER = 'pymysql'
     USERNAME = 'root'
     PASSWORD = 'rYa+wq10dFTWzYz8FeZgsWRygyKfLKULSRdKfRnEgSk='
-    HOST = '42.194.215.214'
+    HOST = '119.91.135.29'
     PORT = '3306'
     DATABASE = 'zhiyuan_sd'
     SQLALCHEMY_DATABASE_URI = "{}+{}://{}:{}@{}:{}/{}?charset=utf8".format(DIALECT, DRIVER, USERNAME, PASSWORD, HOST,PORT, DATABASE)
