@@ -30,7 +30,7 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(255))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     followed = db.relationship('User', secondary=followers, primaryjoin=(followers.c.follower_id == id), secondaryjoin=(
-            followers.c.follower_id == id),
+            followers.c.followed_id == id),
                                backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
 
     def follow(self, user):
@@ -42,10 +42,10 @@ class User(UserMixin, db.Model):
             self.followed.remove(user)
 
     def is_following(self, user):
-        return self.followed.filter(followers.c.follower_id == user.id).count() > 0
+        return self.followed.filter(followers.c.followed_id == user.id).count() > 0
 
     def followed_posts(self):
-        return Post.query.join(followers, (followers.c.follower_id == Post.user_id)).filter(
+        return Post.query.join(followers, (followers.c.followed_id == Post.user_id)).filter(
             followers.c.follower_id == self.id).order_by(Post.timestamp.desc())
 
     def __repr__(self):
