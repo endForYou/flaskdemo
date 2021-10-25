@@ -14,7 +14,7 @@ class Config(object):
     DEBUG = True
     DIALECT = 'mysql'
     DRIVER = 'pymysql'
-    USERNAME = 'root'
+    USERNAME = 'zhiyuan_sd'
     PASSWORD = 'rYa+wq10dFTWzYz8FeZgsWRygyKfLKULSRdKfRnEgSk='
     HOST = '119.91.135.29'
     PORT = '3306'
